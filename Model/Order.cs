@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace BlazingPizza
 {
     public class Order
     {
+        private static readonly CultureInfo UsCulture = CultureInfo.GetCultureInfo("en-US");
         public int OrderId { get; set; }
 
         public string UserId { get; set; }
@@ -18,6 +20,6 @@ namespace BlazingPizza
 
         public decimal GetTotalPrice() => Pizzas.Sum(p => p.GetTotalPrice());
 
-        public string GetFormattedTotalPrice() => GetTotalPrice().ToString("0.00");
+        public string GetFormattedTotalPrice() => GetTotalPrice().ToString("C", UsCulture);
     }
 }
